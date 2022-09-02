@@ -79,6 +79,7 @@
             value="大学物理实验"
           />
           <input type="button" class="btn" @click="danbai" value="单摆实验" />
+          <input type="button" class="btn" @click="shiboqi" value="示波器的调整与使用" />
         </div>
       </div>
     </div>
@@ -127,6 +128,13 @@ export default {
         this.$message.error("该实验已完成作答");
       } else {
         this.$router.push("/danbai");
+      }
+    },
+    shiboqi () {
+       if (localStorage.getItem("shiboqi") != null) {
+        this.$message.error("该实验已完成作答");
+      } else {
+        this.$router.push("/shiboqi");
       }
     },
     intotest() {
