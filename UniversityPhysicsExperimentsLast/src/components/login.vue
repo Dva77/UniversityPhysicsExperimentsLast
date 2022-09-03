@@ -83,8 +83,8 @@ export default {
       if (res.code == 200) {
         this.$message.success("登录成功！");
         localStorage.setItem("token", "Bearer " + res.data.token);
-        localStorage.setItem("state1", res.data.state1);
-        localStorage.setItem("state2", res.data.state2);
+        // localStorage.setItem("state1", res.data.state1);
+        // localStorage.setItem("state2", res.data.state2);
         this.$router.push("/home");
       }
       if (res.code == 100) {

@@ -12,19 +12,19 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 微安表表头满量程电流Ig
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </th>
-            <th><input type="number" /></th>
+            <th><input type="number" v-model="oumubiaoform.ig1" /></th>
             <th>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;μA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </th>
           </tr>
           <tr>
             <th>表头内阻Rg</th>
-            <th><input type="number" /></th>
+            <th><input type="number" v-model="oumubiaoform.rg1" /></th>
             <th>Ω</th>
           </tr>
           <tr>
             <th>电池电压E</th>
-            <th><input type="number" /></th>
+            <th><input type="number" v-model="oumubiaoform.e" /></th>
             <th>V</th>
           </tr>
         </table>
@@ -39,16 +39,28 @@
           </p>
           <p class="addmargin">
             代入E=
-            <input style="width: 70px" type="number" />
-            V, Ig=<input style="width: 70px" type="number" /> μA, Rg=<input
+            <input
               style="width: 70px"
               type="number"
+              v-model="oumubiaoform.e1"
+            />
+            V, Ig=
+            <input style="width: 70px" type="number" v-model="oumubiaoform.i" />
+            μA, Rg=
+            <input
+              style="width: 70px"
+              type="number"
+              v-model="oumubiaoform.ig2"
             />
             Ω，
           </p>
           <p class="addmargin">
             计算出R1=
-            <input style="width: 70px" type="number" />
+            <input
+              style="width: 70px"
+              type="number"
+              v-model="oumubiaoform.r1"
+            />
             Ω
           </p>
           <p class="addmargin">
@@ -57,11 +69,21 @@
           </p>
           <p class="addmargin">
             代入E=
-            <input style="width: 70px" type="number" />
-            V, Rg=<input
+            <input
               style="width: 70px"
               type="number"
-              v-model="oumubiaoform.xz1"
+              v-model="oumubiaoform.e2"
+            />
+            V,R1=
+            <input
+              style="width: 70px"
+              type="number"
+              v-model="oumubiaoform.rb"
+            />
+            Ω, Rg=<input
+              style="width: 70px"
+              type="number"
+              v-model="oumubiaoform.rg2"
             />
             Ω，
           </p>
@@ -70,6 +92,7 @@
             <input
               style="width: 70px"
               type="number"
+              v-model="oumubiaoform.r2"
             />
             Ω
           </p>
@@ -77,77 +100,60 @@
         <p class="addmargin">
           3. 万用表改装设计实验数据记录表(每空5分，共15分，截图分值另计)
         </p>
-        <table  cellspacing="0 " style="width: 650px" class="table">
+        <table cellspacing="0 " style="width: 650px" class="table">
           <tr>
             <th rowspan="4">欧姆表的改装设计</th>
             <th style="width: 70px">改装要求</th>
             <th colspan="3">量程比率×1Ω</th>
             <th style="width: 130px" rowspan="4">
               Rx表头测量数据截图，要求将Rx读数标记在图上（5分）
+              <el-upload
+                class="avatar-uploader"
+                action="http://nsustutest.ymfirst.top/api/upload"
+                :show-file-list="false"
+                :on-success="RxSuccess"
+                :before-upload="beforeAvatarUpload"
+              >
+                <img v-if="oumubiaoform.p1" :src="oumubiaoform.p1" class="avatar" />
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
             </th>
           </tr>
           <tr>
             <th rowspan="2">改装计算</th>
-            <th style="width: 100px">调零电阻R1=</th>
-            <th><input type="number"  /></th>
+            <th style="width: 100px；">调零电阻R1=</th>
+            <th><input type="number" v-model="oumubiaoform.r3" /></th>
             <th style="width: 50px">Ω</th>
           </tr>
 
           <tr>
-            <th>校准电阻R2=</th>
-            <th><input type="number" /></th>
+            <th style="heigth:50px;">校准电阻R2=</th>
+            <th><input type="number" v-model="oumubiaoform.r4" /></th>
             <th>Ω</th>
           </tr>
           <tr>
             <th>测量电阻</th>
             <th>Rx=</th>
-            <th><input type="number" /></th>
+            <th><input type="number" v-model="oumubiaoform.rx" /></th>
             <th>Ω</th>
           </tr>
           <tr>
-             <th colspan="6" class="nobboder">
+            <th colspan="6" class="nobboder">
               <p style="float: left; display: block; margin-left: 10px">
                 实验电路连线截图（5分）
-              </p></th>
+              </p>
+            </th>
           </tr>
           <tr>
-            <th colspan="6" style="float: left; margin:10px;">
-
+            <th colspan="6" class="notboder">
               <el-upload
-                action="#"
-                list-type="picture-card"
-                :auto-upload="false"
+                action="http://nsustutest.ymfirst.top/api/upload"
+                :show-file-list="false"
+                :on-success="shiyanSuccess"
+                :before-upload="beforeAvatarUpload"
               >
-                <i slot="default" class="el-icon-plus"></i>
-                <div slot="file" slot-scope="{ file }">
-                  <img
-                    class="el-upload-list__item-thumbnail"
-                    :src="file.url"
-                    alt=""
-                  />
-                  <span class="el-upload-list__item-actions">
-                    <span
-                      class="el-upload-list__item-preview"
-                      @click="handlePictureCardPreview(file)"
-                    >
-                      <i class="el-icon-zoom-in"></i>
-                    </span>
-                    <span
-                      v-if="!disabled"
-                      class="el-upload-list__item-delete"
-                      @click="handleDownload(file)"
-                    >
-                      <i class="el-icon-download"></i>
-                    </span>
-                    <span
-                      v-if="!disabled"
-                      class="el-upload-list__item-delete"
-                      @click="handleRemove(file)"
-                    >
-                      <i class="el-icon-delete"></i>
-                    </span>
-                  </span>
-                </div>
+                <img v-if="oumubiaoform.p2" :src="oumubiaoform.p2" class="avatar" />
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </th>
           </tr>
@@ -157,9 +163,13 @@
       <h4>二、选择题（每题5分，共15分）</h4>
       <div>1. 关于使用万用表欧姆档测电阻的下列说法中正确的是( )</div>
 
-      <img class="photo" src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/%E6%AC%A7%E5%A7%86%E8%A1%A8.png?Expires=1661336052&OSSAccessKeyId=TMP.3KdJkzVYbcmkFNirRm72Qwddo4Pg9T97LAHR5c8NbMGxLqg3TirGMW4F9FJn55pPm1Xx698U4HVyNUrTUWmn1RvCFD31QA&Signature=7xkJO6v8wL3d%2FSsJIA81wqaoaSc%3D" alt="" />
+      <img
+        class="photo"
+        src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220901141309.png"
+        alt=""
+      />
       <el-form-item>
-        <el-radio-group v-model="oumubiaoform.xz1">
+        <el-radio-group v-model="oumubiaoform.pd1">
           <el-radio label="A">A. 测量阻值不同的电阻时必须重新调零</el-radio
           ><br />
           <el-radio label="B"
@@ -181,7 +191,7 @@
         )
       </div>
       <el-form-item>
-        <el-radio-group v-model="oumubiaoform.xz2">
+        <el-radio-group v-model="oumubiaoform.pd2">
           <el-radio label="A">A. 50 Ω</el-radio><br />
           <el-radio label="B">B. 100 Ω</el-radio><br />
           <el-radio label="C">C. 16.7 Ω </el-radio><br />
@@ -190,7 +200,7 @@
       </el-form-item>
       <div>3.关于欧姆表，下列说法正确的是( )</div>
       <el-form-item>
-        <el-radio-group v-model="oumubiaoform.xz3">
+        <el-radio-group v-model="oumubiaoform.pd3">
           <el-radio label="A">A. 刻度盘上的刻度是均匀的</el-radio><br />
           <el-radio label="B">B. 指针指在最左边，表示待测电阻为零</el-radio
           ><br />
@@ -199,7 +209,7 @@
           <el-radio label="D">D. 欧姆表可以精确的测量电阻</el-radio>
         </el-radio-group>
       </el-form-item>
-       <h4>线上资源</h4>
+      <h4>线上资源</h4>
       <p class="addmargin">
         1）在线实验报告系统链接：
         <a href="http://180.76.111.200/#/login "
@@ -224,49 +234,130 @@
 export default {
   data() {
     return {
-      oumubiaoform: {},
-       dialogImageUrl: '',
-        dialogVisible: false,
-        disabled: false
+
+      oumubiaoform: {
+        ra:"E/Ig-Rg",
+        grade_xp:"15",
+        ig1: "",
+        rg1: "",
+        e: "",
+        e1: "",
+        i: "",
+        ig2: "",
+        r1: "",
+        e2: "",
+        rb: "",
+        rg2: "",
+        r2: "",
+        r3: "",
+        r4: "",
+        rx: "",
+        p1: "",
+        p2: "",
+        pd1: "",
+        pd2: "",
+        pd3: "",
+      },
+
+      dialogVisible: false,
+      disabled: false,
     };
   },
   methods: {
-    // async onsubmit() {
-    //   for (var key in this.oumubiaoform) {
-    //     if (!this.oumubiaoform[key]) {
-    //       this.$message.error("题目未做完！");
-    //       return false;
-    //     }
-    //   }
-    //   const { data: res } = await this.$http.post(
-    //     "/api/danbai",
-    //     this.oumubiaoform
-    //   );
-    //   if (res.code == 200) {
-    //     this.$message.success("提交成功");
-    //     localStorage.setItem("state2", 2);
-    //     this.$router.push("/home");
-    //   }
-    //   if (res.code == 100) {
-    //     this.$message.error("已提交，请勿重复操作！");
-    //   }
-    // },
-     handleRemove(file) {
-        console.log(file);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      },
-      handleDownload(file) {
-        console.log(file);
+    // 测试
+
+    RxSuccess(res, file) {
+      if (res.code == 200) {
+       this.oumubiaoform.p1 = URL.createObjectURL(file.raw);
+      } else {
+        this.$message.error("图片上传失败，请重新上传!!");
+      }
+    },
+    shiyanSuccess(res, file) {
+      if (res.code == 200) {
+       this.oumubiaoform.p2 = URL.createObjectURL(file.raw);
+      } else {
+        this.$message.error("图片上传失败，请重新上传!!");
+      }
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error("上传图片只能是 JPG/PNG/JPEG 格式!");
+      }
+      if (!isLt2M) {
+        this.$message.error("上传图片大小不能超过 2MB!");
+      }
+      return isJPG && isLt2M;
+    },
+
+    async onsubmit() {
+      for (var key in this.oumubiaoform) {
+        if (!this.oumubiaoform[key]) {
+          this.$message.error("题目未做完！");
+          return false;
+        }
+      }
+      const { data: res } = await this.$http.post(
+        "/api/oumu/luru",
+        this.oumubiaoform
+      );
+      if (res.code == 200) {
+        this.$message.success("提交成功");
+        localStorage.setItem("oumubiao", 3);
+        this.$router.push("/home");
       }
 
+      if (res.code == 100) {
+        this.$message.error("提交失败！");
+      }
+      if (res.code == 101) {
+        this.$message.error("请勿重复提交！");
+      }
+    },
+
+    // Rx上传截图
   },
 };
 </script>
 
 <style scoped>
+/* Rx截图上传 */
+.Rxpicture {
+  height: 100px;
+  width: 150px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+}
+.avatar {
+  width: 150px;
+  height: 150px;
+  display: block;
+}
+
 .photo {
   height: 100px;
   width: 200px;
@@ -274,18 +365,14 @@ export default {
   margin-left: 80px;
   background-color: rgba(231, 231, 231, 0.663);
 }
-.nolboder {
-  border-left: 0px solid;
-}
-.norboder {
-  border-right: 0px solid;
-}
+
 .notboder {
   border-top: 0px solid;
 }
 .nobboder {
   border-bottom: 0px solid;
 }
+
 .addmargin {
   margin: 10px 0px;
 }

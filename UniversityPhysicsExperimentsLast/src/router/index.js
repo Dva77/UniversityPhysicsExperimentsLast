@@ -7,6 +7,8 @@ import danbai from '../components/danbai.vue'
 // import trends from '../components/trends.vue'
 import home from '../components/home.vue'
 import shiboqi from '../components/shiboqi.vue'
+import oumubiao from '../components/oumubiao.vue'
+import wanyongbiao from '../components/wanyongbiao.vue'
 import axios from 'axios'
 import { Message } from 'element-ui'
 Vue.use(VueRouter)
@@ -18,7 +20,9 @@ const routes = [
     { path: '/daxuewulishiyan', component: daxuewulishiyan },
     { path: '/danbai', component: danbai },
     { path: '/home', component: home, },
-    { path: '/shiboqi', component: shiboqi, }
+    { path: '/shiboqi', component: shiboqi, },
+    { path: '/oumubiao', component: oumubiao, },
+    { path: '/wanyongbiao', component: wanyongbiao, }
 ]
 
 

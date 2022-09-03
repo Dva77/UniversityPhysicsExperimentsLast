@@ -79,7 +79,24 @@
             value="大学物理实验"
           />
           <input type="button" class="btn" @click="danbai" value="单摆实验" />
-          <input type="button" class="btn" @click="shiboqi" value="示波器的调整与使用" />
+          <input
+            type="button"
+            class="btn"
+            @click="shiboqi"
+            value="示波器的调整与使用"
+          />
+          <input
+            type="button"
+            class="btn"
+            @click="oumubiao"
+            value="欧姆表的改装设计"
+          />
+          <input
+            type="button"
+            class="btn"
+            @click="wanyongbiao"
+            value="万用表的改装设计"
+          />
         </div>
       </div>
     </div>
@@ -116,25 +133,69 @@ export default {
         this.Form = res.data[0];
       }
     },
-    daxuewuli() {
-      if (localStorage.getItem("state1") == 2) {
+    async daxuewuli() {
+      const { data: res } = await this.$http.post("/api/pd");
+      var state = res.data.state1;
+      if (state == 3) {
         this.$message.error("该实验已完成作答");
+        return false;
+      } else if (state == 0 || state == 1 || state == 2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false;
       } else {
         this.$router.push("/daxuewulishiyan");
       }
     },
-    danbai() {
-      if (localStorage.getItem("state2") == 2) {
+    async danbai() {
+      const { data: res } = await this.$http.post("/api/pd");
+      var state = res.data.state2;
+      if (state == 3) {
         this.$message.error("该实验已完成作答");
+        return false;
+      } else if (state == 0 || state == 1 || state == 2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false;
       } else {
         this.$router.push("/danbai");
       }
     },
-    shiboqi () {
-       if (localStorage.getItem("shiboqi") != null) {
+    async shiboqi() {
+      const { data: res } = await this.$http.post("/api/pd");
+      var state = res.data.shiboqi;
+      if (state == 3) {
         this.$message.error("该实验已完成作答");
+        return false;
+      } else if (state == 0 || state == 1 || state == 2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false;
       } else {
         this.$router.push("/shiboqi");
+      }
+    },
+    async oumubiao() {
+      const { data: res } = await this.$http.post("/api/pd");
+      var state = res.data.oumubiao;
+      if (state == 3) {
+        this.$message.error("该实验已完成作答");
+        return false;
+      } else if (state == 0 || state == 1 || state == 2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false;
+      } else {
+        this.$router.push("/oumubiao");
+      }
+    },
+    async wanyongbiao() {
+      const { data: res } = await this.$http.post("/api/pd");
+      var state = res.data.wanyongbiao;
+      if (state == 3) {
+        this.$message.error("该实验已完成作答");
+        return false;
+      } else if (state == 0 || state == 1 || state == 2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false;
+      } else {
+        this.$router.push("/wanyongbiao");
       }
     },
     intotest() {

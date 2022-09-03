@@ -1,92 +1,115 @@
 <template>
   <div class="all">
     <el-form :model="wanyongform" ref="wanyongform" class="demo-wanyongform">
-      <h4>一、实验数据记录与处理</h4>
+      <h4>一、实验数据记录（每空3分，共75分）</h4>
       <div class="addmargin">
         <el-form-item>
           1. 待改装微安表参数记录 : <br />
           微安表满量程电流Ig=
-          <input type="number" /> mA； 表头内阻Rg=
-          <input type="number" /> Ω；<br />
-          电池电压E= <input type="number" /> V；
+          <input type="number" v-model="wanyongform.one_ig" /> mA； 表头内阻Rg=
+          <input type="number" v-model="wanyongform.one_rg" /> Ω；<br />
+          电池电压E= <input type="number" v-model="wanyongform.one_e" /> V；
         </el-form-item>
       </div>
       <div class="addmargin">
         2. 各电阻阻值设置计算（计算结果要求保留1位小数）
         <p class="addmargin">⑴分流电阻R1计算：</p>
-        仅闭合转换开关1，此时分流电阻计算公式为：
+        仅闭合转换开关1，此时分流电阻计算公式为：<br>
 
         <img
           class="photo"
-          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220824172615.png?Expires=1661336348&OSSAccessKeyId=TMP.3KdJkzVYbcmkFNirRm72Qwddo4Pg9T97LAHR5c8NbMGxLqg3TirGMW4F9FJn55pPm1Xx698U4HVyNUrTUWmn1RvCFD31QA&Signature=1dQZm0Q8VlaxZf3umtpBSLgpuaM%3D"
+          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220902223432.png"
           alt=""
         />
         <br />
-        带入Rg= <input type="number" /> Ω；Ig= <input type="number" /> mA；Im=
-        <input type="number" /> mA； <br />
-        计算出：R1= <input type="number" /> Ω；<br />
-        接入待测电流，得到：Ix= <input type="number" /> mA；
+        带入Rg= <input type="number" v-model="wanyongform.two_one_rg" /> Ω；Ig=
+        <input type="number" v-model="wanyongform.two_one_ig" /> mA；Im=
+        <input type="number" v-model="wanyongform.two_one_im" /> mA； <br />
+        计算出：R1=
+        <input type="number" v-model="wanyongform.two_one_r1" /> Ω；<br />
+        接入待测电流，得到：Ix=
+        <input type="number" v-model="wanyongform.two_one_lx" /> mA；
 
         <p class="addmargin">
           为了后续改装电压档和欧姆档的方便，根据电路图，在扩程电流档实现后，可将整个电流扩程电路看作为：
         </p>
-        内阻：Rn=Rg//R1 = <input type="number" /> Ω；量程Im=
-        <input type="number" /> mA的电流表。<br />
+        内阻：Rn=Rg//R1 =
+        <input type="number" v-model="wanyongform.two_one_rn" /> Ω；量程Im=
+        <input type="number" v-model="wanyongform.two_one_im2" />
+        mA的电流表。<br />
         <p class="addmargin">⑵分压电阻R2计算：</p>
         仅闭合转换开关2，此时分压电阻计算公式为：<br />
         <img
           class="photo"
-          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220824174107.png?Expires=1661336321&OSSAccessKeyId=TMP.3KdJkzVYbcmkFNirRm72Qwddo4Pg9T97LAHR5c8NbMGxLqg3TirGMW4F9FJn55pPm1Xx698U4HVyNUrTUWmn1RvCFD31QA&Signature=oSJhp4QSDOKxIJqlQN4dcU6hLPA%3D"
-          alt=""
+          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220902223514.png"
+           alt=""
         /><br />
-        带入Vm= <input type="number" /> V；Im= <input type="number" /> A；Rn=
-        <input type="number" /> Ω；<br />
-        计算出R2= <input type="number" /> Ω；<br />
-        接入待测电压，得到：Vx== <input type="number" /> V；
+        带入Vm= <input type="number" v-model="wanyongform.two_two_vm" /> V；Im=
+        <input type="number" v-model="wanyongform.two_two_im" /> A；Rn=
+        <input type="number" v-model="wanyongform.two_two_rn" /> Ω；<br />
+        计算出R2=
+        <input type="number" v-model="wanyongform.two_two_r2" /> Ω；<br />
+        接入待测电压，得到：Vx==
+        <input type="number" v-model="wanyongform.two_two_vx" /> V；
 
         <p class="addmargin">⑶调零电阻R3计算（理论值）：</p>
         根据电路图，仅闭合转换开关3，短接红黑表笔，此时调零电阻计算公式为：<br />
         <img
           class="photo"
-          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220824174515.png?Expires=1661336256&OSSAccessKeyId=TMP.3KdJkzVYbcmkFNirRm72Qwddo4Pg9T97LAHR5c8NbMGxLqg3TirGMW4F9FJn55pPm1Xx698U4HVyNUrTUWmn1RvCFD31QA&Signature=231V8P1j8dU9TIgcapzve6WPaxw%3D"
-          alt=""
+          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220902223552.png"
+           alt=""
         />
         <br />
-        带入E= <input type="number" /> V；Im= <input type="number" /> A；Rn=
-        <input type="number" /> Ω；<br />
-        计算出R3= <input type="number" /> Ω；
+        带入E= <input type="number" v-model="wanyongform.two_thr_e" /> V；Im=
+        <input type="number" v-model="wanyongform.two_thr_im" /> A；Rn=
+        <input type="number" v-model="wanyongform.two_thr_rn" /> Ω；<br />
+        计算出R3= <input type="number" v-model="wanyongform.two_thr_r3" /> Ω；
 
         <p class="addmargin">⑷校准电阻R4计算（理论值）：</p>
         根据电路图及此微安表表盘刻度，闭合转换开关3和单刀开关，红黑表笔接100Ω电阻。此时校准电阻计算公式为：
         <img
           class="photo"
-          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220824174715.png?Expires=1661336227&OSSAccessKeyId=TMP.3KdJkzVYbcmkFNirRm72Qwddo4Pg9T97LAHR5c8NbMGxLqg3TirGMW4F9FJn55pPm1Xx698U4HVyNUrTUWmn1RvCFD31QA&Signature=nAnIwpe7nXwQzvKTi79igCOS%2FhQ%3D"
+         src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220902223623.png"
           alt=""
         />
         <br />
 
-        带入：E= <input type="number" /> V；I3= <input type="number" /> A；Rx=
-        <input type="number" /> Ω； R3+Rn= <input type="number" /> Ω；<br />
-        计算出R4= <input type="number" /> Ω；<br />
-        接入待测电阻，得到Rx= <input type="number" /> Ω；
+        带入：E= <input type="number" v-model="wanyongform.two_four_e" /> V；I3=
+        <input type="number" v-model="wanyongform.two_four_i3" /> A；Rx=
+        <input type="number" v-model="wanyongform.two_four_rx" /> Ω； R3+Rn=
+        <input type="number" v-model="wanyongform.two_four_r3rn" /> Ω；<br />
+        计算出R4=
+        <input type="number" v-model="wanyongform.two_four_r4" /> Ω；<br />
+        接入待测电阻，得到Rx=
+        <input type="number" v-model="wanyongform.two_four_rx2" /> Ω；
       </div>
 
-      <h4>二、思考题</h4>
+      <h4>二、思考题（共25分）</h4>
       <div>
         下图是小明同学根据万用表改装设计实验要求，搭建的电路测试实验截图，请问：
         <img
-          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220824175138.png?Expires=1661336179&OSSAccessKeyId=TMP.3KdJkzVYbcmkFNirRm72Qwddo4Pg9T97LAHR5c8NbMGxLqg3TirGMW4F9FJn55pPm1Xx698U4HVyNUrTUWmn1RvCFD31QA&Signature=o8dQh9bnl5pt%2Fe4o04BUHNd9dYk%3D"
+          src="https://liuru1.oss-cn-chengdu.aliyuncs.com/img/20220902223713.png"
           alt=""
         />
       </div>
-      <p class="addmargin">1.指出图中各电阻箱的作用：</p>
-      电阻箱1（ <input type="text" /> ） 电阻箱2 （
-      <input type="text" /> ）<br />
-      电阻箱3（ <input type="text" /> ） 电阻箱4 （ ）<br />
+      <p class="addmargin">1.指出图中各电阻箱的作用：（每空5分，共20分）</p>
+      电阻箱1（ <input type="text" v-model="wanyongform.thir_one_one" style="width:100px;" /> ）
+      电阻箱2 （
+      <input type="text" v-model="wanyongform.thir_one_two"  style="width:100px;"/> ）<br />
+      电阻箱3（ <input type="text" v-model="wanyongform.thir_one_three" style="width:100px;" /> ）
+      电阻箱4 （
+      <input type="text" v-model="wanyongform.thir_one_four"  style="width:100px;"/> ）<br />
       A. 调零电阻 B. 分流电阻 C. 分压电阻 D. 校准电阻
-      <p class="addmargin">2.判断 T or F</p>
-      ①实验测试前，微安表未机械调零。<input type="text" /> <br />
-      ②实验测试中，在测量电流时，应该将单刀开关断开。<input type="text" />
+      <p class="addmargin">2.判断 T or F（每空2.5分，共5分）</p>
+      ①实验测试前，微安表未机械调零。<input
+        type="text"
+        v-model="wanyongform.thir_two_one"
+      />
+      <br />
+      ②实验测试中，在测量电流时，应该将单刀开关断开。<input
+        type="text"
+        v-model="wanyongform.thir_two_two"
+      />
       <h4>线上资源</h4>
       <p class="addmargin">
         1）在线实验报告系统链接：
@@ -112,7 +135,39 @@
 export default {
   data() {
     return {
-      wanyongform: {},
+      wanyongform: {
+        one_ig: "",
+        one_rg: "",
+        one_e: "",
+        two_one_rg: "",
+        two_one_ig: "",
+        two_one_im: "",
+        two_one_r1: "",
+        two_one_lx: "",
+        two_one_rn: "",
+        two_one_im2: "",
+        two_two_vm: "",
+        two_two_im: "",
+        two_two_rn: "",
+        two_two_r2: "",
+        two_two_vx: "",
+        two_thr_e: "",
+        two_thr_im: "",
+        two_thr_rn: "",
+        two_thr_r3: "",
+        two_four_e: "",
+        two_four_i3: "",
+        two_four_rx: "",
+        two_four_r3rn: "",
+        two_four_r4: "",
+        two_four_rx2: "",
+        thir_one_one: "",
+        thir_one_two: "",
+        thir_one_three: "",
+        thir_one_four: "",
+        thir_two_one: "",
+        thir_two_two: "",
+      },
     };
   },
   methods: {
@@ -124,16 +179,19 @@ export default {
         }
       }
       const { data: res } = await this.$http.post(
-        "/api/danbai",
+        "/api/wanyongbiao/luru",
         this.wanyongform
       );
       if (res.code == 200) {
         this.$message.success("提交成功");
-        localStorage.setItem("state2", 2);
+        localStorage.setItem("wangyongbiao", 3);
         this.$router.push("/home");
       }
       if (res.code == 100) {
-        this.$message.error("已提交，请勿重复操作！");
+        this.$message.error("提交失败！");
+      }
+      if (res.code == 101) {
+        this.$message.push("已提交，请勿重复操作");
       }
     },
   },
@@ -144,6 +202,7 @@ export default {
 .photo {
   height: 80px;
   margin: 10px;
+  float: none;
   margin-left: 100px;
   background-color: rgba(231, 231, 231, 0.663);
 }
