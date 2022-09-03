@@ -51,7 +51,7 @@
             </tr>
             <tr>
               学号 :
-              <span :model="Form.student_num">{{ Form.student_num }}</span>
+              <span  :model="Form.student_num">{{ Form.student_num }}</span>
             </tr>
             <tr>
               学生层次 :
@@ -211,7 +211,7 @@ export default {
     },
     async wanyongbiao() {
       const { data: res } = await this.$http.post("/api/pd");
-      var state = res.data.wanyongbiao;
+      var state = res.data.wangyongbiao;
       if (state == 3) {
         this.$message.error("该实验已完成作答");
         return false;
@@ -380,25 +380,39 @@ tr > td:first-child {
 }
 .form {
   margin: 20px 0;
+  font-size: 30px;
+  margin: 75px auto;
+  padding-left: 150px;
   /* text-align: center; */
 }
 .btn {
   width: 80%;
   border: 0.1px solid rgb(242, 242, 242);
+  border-radius: 20px;
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
   /* margin-bottom: 5%; */
-  font-size: medium;
-  padding: 3px 20px;
+  font-size: 27px;
+  padding: 7px 20px;
 }
 
 .box {
+  position: absolute;
+  top: 17%;
+  left: 28%;
+  border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.89);
   margin: 5vw auto;
-  width: 400px;
-  height: 380px;
+  height: 550px;
   /* border-radius: 10px; */
+  margin: auto 4rem;
+  padding: 1rem;
+  min-width: 45rem;
+  max-width: 70rem;
+  background-color: white;
+  word-wrap: break-word;
+  box-shadow:10px 1em 0.1875em 0 rgb(0 0 0 / 10%), inset 17px 0.85em 0 -0.25em #fef0f0, 18px 1em 0.1875em -0.25em rgb(0 0 0 / 10%), 16px 0.78em 0px 0em #e5e5e5, 12px 0.2em 0.1875em -0.5em rgb(0 0 0 / 10%);
 }
 .el-input {
   width: 60%;
@@ -413,14 +427,14 @@ tr > td:first-child {
   float: right;
 }
 .home_container {
-  background-color: rgb(0, 127, 247);
+  background-color: #749AD8;
 }
 
 .main {
   color: #fff;
   height: 100%;
   position: relative;
-  background-image: url("../assets/homebg.png");
+  background-image: url("https://zj-cloudimg.oss-cn-chengdu.aliyuncs.com/img/202209032015192.png");
   background-size: 100%;
 }
 

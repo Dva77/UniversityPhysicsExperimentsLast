@@ -231,7 +231,7 @@
 
 
       <el-form-item class="footer">
-        <el-button class="btn" type="primary" @click="send(Form)" 
+        <el-button class="btn" type="primary" @click="send(Form)"
           >提交</el-button
         >
       </el-form-item>
@@ -293,6 +293,7 @@
           grade_xp:'',
         },
         Form: {
+          grade_xp:0,
           one: "",
           two: "",
           pone: "",
@@ -348,9 +349,21 @@
         var pd2 =val.ptwo;
         var grade_xp = this.tableState.grade_xp;
         var studentId = window.localStorage.getItem("StudentId");
+        if(val.one == 'A') {
+          this.Form.grade_xp += 10
+        }
+        if(val.two == 'C') {
+          this.Form.grade_xp += 10
+        }
+        if(val.pone == '0') {
+          this.Form.grade_xp += 6
+        }
+        if(val.ptwo == '1') {
+          this.Form.grade_xp += 6
+        }
         const { data: res } = await this.$http.post('/api/zizu/luru',{
             student_id: studentId,
-            grade_xp: 0,
+            grade_xp: this.Form.grade_xp,
             ra1:ra1,
             ra2:ra2,
             ra3:ra3,

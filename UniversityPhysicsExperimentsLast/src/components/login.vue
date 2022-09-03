@@ -1,12 +1,20 @@
 <template>
   <div class="main">
-    <!-- <el-container class="home_container">
+    <el-container class="home_container">
             <el-header>
                 <div class="header">
                      <img src="https://www.nsu.edu.cn/img/logo.png" alt="">
                 </div>
             </el-header>
-            </el-container> -->
+            </el-container>
+    <div class="titlebox">
+      <div class="title">欢迎来到</div>
+      <div class="title">物理实验答题系统</div>
+      <div class="title1">
+        物理学是自然科学庞大体系中的一门基础学科。从17世纪至今，物理学一直是迅速发展、门类浩繁的自然科学体系中的带头学科。
+      </div>
+    </div>
+
     <div class="innerBox">
       <div class="loginbox">
         <el-form
@@ -96,15 +104,29 @@ export default {
 </script>
 
 <style scoped>
+.titlebox {
+  width: 640px;
+  position: absolute;
+  top: 35%;
+  left: 8%;
+}
+.title {
+  font-size: 65px;
+  margin-bottom: 10px;
+}
+.title1 {
+  font-size: 20px;
+}
 .home_container {
-  background-color: rgb(0, 127, 247);
+  background-color: #749AD8;
 }
 .main {
   color: #fff;
   height: 100%;
+  width: 100%;
   position: relative;
-  background-image: url("https://zj-cloudimg.oss-cn-chengdu.aliyuncs.com/img/202207011447594.png");
-  background-size: 100%;
+  background-image: url("https://zj-cloudimg.oss-cn-chengdu.aliyuncs.com/img/202209032015192.png");
+  background-size: cover;
 }
 .innerBox {
   height: 500px;
@@ -121,8 +143,15 @@ align-items: center; */
   width: 430px;
   background-color: #fff;
   border-radius: 14px;
-  right: 10%;
-  bottom: 5%;
+  top: 50%;
+  left: 57%;
+  margin: auto 4rem;
+  padding: 1rem;
+  min-width: 20rem;
+  max-width: 30rem;
+  background-color: white;
+  word-wrap: break-word;
+  box-shadow: 7px 0em 0.1875em 0 rgb(0 0 0 / 10%), 20px -1em 0 -0.25em #fef0f0, 20px -1em 0.1875em -0.25em rgb(0 0 0 / 10%), 20px -1em 0px 0em #e5e5e5, 20px 0em 0.1875em -0.5em rgb(0 0 0 / 10%);
 }
 .forget {
   margin-bottom: 14px;

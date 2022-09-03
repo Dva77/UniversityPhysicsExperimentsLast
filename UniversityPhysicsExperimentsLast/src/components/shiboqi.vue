@@ -469,12 +469,19 @@ export default {
         "/api/shiboqi/luru",
         this.form2
       );
-      if (res.code == 200) {
-        this.$message.success('上传成功！')
-        this.$router.replace('/home')
-      } else {
-        this.$message.error(res.msg);
-      }
+       if (res.code == 100) {
+          this.$message.error("提交失败！");
+        }
+        if (res.code == 150) {
+          this.$message.error("请勿重复提交！");
+        }
+        if (res.code == 422) {
+          this.$message.error("请填完所有题目");
+        }
+        if (res.code == 200) {
+          this.$message.success("提交成功！");
+          this.$router.push("/home");
+        }
     },
   },
 };

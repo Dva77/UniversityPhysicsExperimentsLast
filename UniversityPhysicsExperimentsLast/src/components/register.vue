@@ -14,6 +14,15 @@
         </div>
       </el-header>
     </el-container>
+
+    <div class="titlebox">
+      <div class="title">欢迎来到</div>
+      <div class="title">物理实验答题系统</div>
+      <div class="title1">
+        物理学是自然科学庞大体系中的一门基础学科。从17世纪至今，物理学一直是迅速发展、门类浩繁的自然科学体系中的带头学科。
+      </div>
+    </div>
+
     <div class="innerBox">
       <div class="box">
         <el-form
@@ -380,6 +389,19 @@ export default {
 </script>
 
 <style scoped>
+.titlebox {
+  width: 640px;
+  position: absolute;
+  top: 35%;
+  left: 8%;
+}
+.title {
+  font-size: 65px;
+  margin-bottom: 10px;
+}
+.title1 {
+  font-size: 20px;
+}
 .loginbtn {
   position: absolute;
   right: 30px;
@@ -420,19 +442,27 @@ export default {
 .box {
   position: absolute;
   right: 10%;
+  top: 145px;
   background-color: #fff;
   margin: 3vw auto;
   width: 35%;
   border-radius: 14px;
+  margin: auto 4rem;
+  padding: 1rem;
+  min-width: 35rem;
+  max-width: 50rem;
+  background-color: white;
+  word-wrap: break-word;
+  box-shadow: 7px 0em 0.1875em 0 rgb(0 0 0 / 10%), 20px -1em 0 -0.25em #fef0f0, 20px -1em 0.1875em -0.25em rgb(0 0 0 / 10%), 20px -1em 0px 0em #e5e5e5, 20px 0em 0.1875em -0.5em rgb(0 0 0 / 10%);
 }
 .home_container {
-  background-color: rgb(0, 58, 247);
+  background-color: #749AD8;
 }
 .main {
   color: #fff;
   height: 100%;
   position: relative;
-  background-image: url("https://zj-cloudimg.oss-cn-chengdu.aliyuncs.com/img/202207011447594.png");
+  background-image: url("https://zj-cloudimg.oss-cn-chengdu.aliyuncs.com/img/202209032015192.png");
   background-size: 100%;
 }
 

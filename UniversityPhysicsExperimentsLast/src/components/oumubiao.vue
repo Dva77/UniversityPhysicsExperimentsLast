@@ -114,7 +114,11 @@
                 :on-success="RxSuccess"
                 :before-upload="beforeAvatarUpload"
               >
-                <img v-if="oumubiaoform.p1" :src="oumubiaoform.p1" class="avatar" />
+                <img
+                  v-if="oumubiaoform.p1"
+                  :src="oumubiaoform.p1"
+                  class="avatar"
+                />
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </th>
@@ -127,7 +131,7 @@
           </tr>
 
           <tr>
-            <th style="heigth:50px;">校准电阻R2=</th>
+            <th style="heigth: 50px">校准电阻R2=</th>
             <th><input type="number" v-model="oumubiaoform.r4" /></th>
             <th>Ω</th>
           </tr>
@@ -152,7 +156,11 @@
                 :on-success="shiyanSuccess"
                 :before-upload="beforeAvatarUpload"
               >
-                <img v-if="oumubiaoform.p2" :src="oumubiaoform.p2" class="avatar" />
+                <img
+                  v-if="oumubiaoform.p2"
+                  :src="oumubiaoform.p2"
+                  class="avatar"
+                />
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </th>
@@ -234,10 +242,9 @@
 export default {
   data() {
     return {
-
       oumubiaoform: {
-        ra:"E/Ig-Rg",
-        grade_xp:"15",
+        ra: "E/Ig-Rg",
+        grade_xp: 0,
         ig1: "",
         rg1: "",
         e: "",
@@ -267,25 +274,17 @@ export default {
     // 测试
 
     RxSuccess(res, file) {
-      if (res.code == 200) {
-       this.oumubiaoform.p1 = URL.createObjectURL(file.raw);
-      } else {
-        this.$message.error("图片上传失败，请重新上传!!");
-      }
+      this.oumubiaoform.p1 = URL.createObjectURL(file.raw);
     },
     shiyanSuccess(res, file) {
-      if (res.code == 200) {
-       this.oumubiaoform.p2 = URL.createObjectURL(file.raw);
-      } else {
-        this.$message.error("图片上传失败，请重新上传!!");
-      }
+      this.oumubiaoform.p2 = URL.createObjectURL(file.raw);
     },
     beforeAvatarUpload(file) {
-      const isJPG = file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/jpg";
+      const isJPG = file.type === "image/jpeg";
       const isLt2M = file.size / 1024 / 1024 < 2;
 
       if (!isJPG) {
-        this.$message.error("上传图片只能是 JPG/PNG/JPEG 格式!");
+        this.$message.error("上传图片只能是 JPG 格式!");
       }
       if (!isLt2M) {
         this.$message.error("上传图片大小不能超过 2MB!");
@@ -294,11 +293,22 @@ export default {
     },
 
     async onsubmit() {
+
       for (var key in this.oumubiaoform) {
         if (!this.oumubiaoform[key]) {
           this.$message.error("题目未做完！");
+          this.oumubiaoform.grade_xp =0;
           return false;
         }
+      }
+      if (this.oumubiaoform.pd1 == "A") {
+        this.oumubiaoform.grade_xp = this.oumubiaoform.grade_xp + 5;
+      }
+      if (this.oumubiaoform.pd2 == "B") {
+        this.oumubiaoform.grade_xp = this.oumubiaoform.grade_xp + 5;
+      }
+      if (this.oumubiaoform.pd3 == "C") {
+        this.oumubiaoform.grade_xp = this.oumubiaoform.grade_xp + 5;
       }
       const { data: res } = await this.$http.post(
         "/api/oumu/luru",

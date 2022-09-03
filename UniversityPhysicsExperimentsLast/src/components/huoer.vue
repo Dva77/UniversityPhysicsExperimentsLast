@@ -283,7 +283,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item class="footer">
-        <el-button class="btn" type="primary" @click="send(Form)" 
+        <el-button class="btn" type="primary" @click="send(Form)"
           >提交</el-button
         >
       </el-form-item>
@@ -397,9 +397,9 @@
           constant:'',
           number:'',
           fileList: []
-      
         },
         Form: {
+          grade_xp: 0,
           one: "",
           two: "",
           three: "",
@@ -518,9 +518,23 @@
         var p4 = this.tableState.p4;
         var p5 = this.tableState.p5;
         var p6 = this.tableState.p6;
+
+
+        if(this.Form.one == 'A') {
+          this.Form.grade_xp +=5
+        }
+        if(this.Form.two == 'A') {
+          this.Form.grade_xp +=5
+        }
+        if(this.Form.three == 'A') {
+          this.Form.grade_xp +=5
+        }
+        if(this.Form.four == 'A') {
+          this.Form.grade_xp +=5
+        }
         const { data: res } = await this.$http.post('/api/huoer/luru',{
               student_id: studentId,
-              grade_xp: 0,
+              grade_xp: this.Form.grade_xp,
               number:number,
               tu: file,
               constant: constant,
