@@ -7,6 +7,8 @@ import danbai from '../components/danbai.vue'
 // import trends from '../components/trends.vue'
 import home from '../components/home.vue'
 import shiboqi from '../components/shiboqi.vue'
+import huoer from '../components/huoer.vue'
+import zizushi from '../components/zizushi.vue'
 import axios from 'axios'
 import { Message } from 'element-ui'
 Vue.use(VueRouter)
@@ -18,14 +20,16 @@ const routes = [
     { path: '/daxuewulishiyan', component: daxuewulishiyan },
     { path: '/danbai', component: danbai },
     { path: '/home', component: home, },
-    { path: '/shiboqi', component: shiboqi, }
+    { path: '/shiboqi', component: shiboqi, },
+    { path: '/huoer', component: huoer, },
+    { path: '/zizushi', component: zizushi, }
 ]
 
 
 const router = new VueRouter({
         routes
-    })
-    //路由守卫
+})
+//路由守卫
 router.beforeEach((to, from, next) => {
     if (to.path == '/login' || to.path == '/register') {
         next();

@@ -13,7 +13,6 @@ axios.defaults.baseURL = 'http://180.76.111.200:3001'
 axios.interceptors.request.use((config) => {
         config.headers.Authorization = `${window.localStorage.getItem('token')}`
         return config
-
     },
     error => {
         error.data = {
@@ -22,6 +21,7 @@ axios.interceptors.request.use((config) => {
         return Promise.reject(error)
     }
 )
+
 Vue.use(ElementUI)
 
 

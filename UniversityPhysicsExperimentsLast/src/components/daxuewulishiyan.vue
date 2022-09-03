@@ -282,6 +282,7 @@ export default {
             this.ruleForm
           );
           if (res.code == 100) {
+            // console.log(res);
             this.$message.error("提交失败！");
           }
           if (res.code == 150) {
