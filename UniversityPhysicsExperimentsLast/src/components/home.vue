@@ -46,28 +46,28 @@
         <div class="form" v-show="istest">
           <el-form :model="Form" style="margin: 0 auto">
             <tr>
-              <td>姓名</td>
-              <td :model="Form.student_name">{{ Form.student_name }}</td>
+              姓名 :
+              <span :model="Form.student_name">{{ Form.student_name }}</span>
             </tr>
             <tr>
-              <td>学号</td>
-              <td :model="Form.student_num">{{ Form.student_num }}</td>
+              学号 :
+              <span :model="Form.student_num">{{ Form.student_num }}</span>
             </tr>
             <tr>
-              <td>学生层次</td>
-              <td :model="Form.student_level">{{ Form.student_level }}</td>
+              学生层次 :
+              <span :model="Form.student_level">{{ Form.student_level }}</span>
             </tr>
             <tr>
-              <td>年级</td>
-              <td :model="Form.student_year">{{ Form.student_year }}</td>
+              年级 :
+              <span :model="Form.student_year">{{ Form.student_year }}</span>
             </tr>
             <tr>
-              <td>专业</td>
-              <td :model="Form.student_spec">{{ Form.student_spec }}</td>
+              专业 :
+              <span :model="Form.student_spec">{{ Form.student_spec }}</span>
             </tr>
             <tr>
-              <td>班级</td>
-              <td :model="Form.student_class">{{ Form.student_class }}</td>
+              班级 :
+              <span :model="Form.student_class">{{ Form.student_class }}</span>
             </tr>
           </el-form>
         </div>
@@ -76,14 +76,38 @@
             type="button"
             class="btn"
             @click="daxuewuli"
-            value="大学物理实验"
+            value="实验误差与数据处理"
           />
-          <input type="button" class="btn" @click="danbai" value="单摆实验" />
+          <input type="button" class="btn" @click="danbai" value="单摆法测重力加速度" />
           <input
             type="button"
             class="btn"
             @click="shiboqi"
             value="示波器的调整与使用"
+          />
+          <input
+            type="button"
+            class="btn"
+            @click="huoer"
+            value="霍尔效应测量磁感应强度"
+          />
+          <input
+            type="button"
+            class="btn"
+            @click="zizushi"
+            value="自组式直流电桥测量电阻值"
+          />
+          <input
+            type="button"
+            class="btn"
+            @click="xiangShi"
+            value="箱式直流电桥测量电阻值"
+          />
+          <input
+            type="button"
+            class="btn"
+            @click="dianBiaoGaiZhuang"
+            value="电表的改装设计"
           />
           <input
             type="button"
@@ -196,6 +220,67 @@ export default {
         return false;
       } else {
         this.$router.push("/wanyongbiao");
+      }
+    },
+    async huoer() {
+      const { data: res } = await this.$http.post("/api/pd");
+      var state = res.data.huoer;
+      if (state == 3) {
+        this.$message.error("该实验已完成作答");
+        return false;
+      } else if (state == 0 || state == 1 || state == 2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false;
+      } else {
+        this.$router.push("/huoer");
+      }
+    },
+    async zizushi() {
+      const { data: res } = await this.$http.post('/api/pd')
+      // console.log(res);
+      var state = res.data.zhiliu_dianqiao
+      if (state == 0 || state == 1 || state ==2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false
+      }
+      if (state==3) {
+        this.$message.error("该实验已完成作答");
+        return false
+      }
+      else {
+        this.$router.push("/zizushi");
+      }
+    },
+    async xiangShi() {
+      const { data: res } = await this.$http.post('/api/pd')
+      // console.log(res);
+      var state = res.data.xiangShi_dianqiao
+      if (state == 0 || state == 1 || state ==2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false
+      }
+      if (state==3) {
+        this.$message.error("该实验已完成作答");
+        return false
+      }
+      else {
+        this.$router.push("/xiangShi");
+      }
+    },
+    async dianBiaoGaiZhuang() {
+      const { data: res } = await this.$http.post('/api/pd')
+      // console.log(res);
+      var state = res.data.dianbiao
+      if (state == 0 || state == 1 || state ==2) {
+        this.$message.error("您的实验数据异常，请联系您的教师");
+        return false
+      }
+      if (state==3) {
+        this.$message.error("该实验已完成作答");
+        return false
+      }
+      else {
+        this.$router.push("/dianBiaoGaiZhuang");
       }
     },
     intotest() {

@@ -9,6 +9,10 @@ import home from '../components/home.vue'
 import shiboqi from '../components/shiboqi.vue'
 import oumubiao from '../components/oumubiao.vue'
 import wanyongbiao from '../components/wanyongbiao.vue'
+import dianBiaoGaiZhuang from '../components/dianBiaoGaiZhuang.vue'
+import huoer from '../components/huoer.vue'
+import XiangShi from '../components/xiangShi.vue'
+import zizushi from '../components/zizushi.vue'
 import axios from 'axios'
 import { Message } from 'element-ui'
 Vue.use(VueRouter)
@@ -22,7 +26,11 @@ const routes = [
     { path: '/home', component: home, },
     { path: '/shiboqi', component: shiboqi, },
     { path: '/oumubiao', component: oumubiao, },
-    { path: '/wanyongbiao', component: wanyongbiao, }
+    { path: '/wanyongbiao', component: wanyongbiao, },
+    { path: '/dianBiaoGaiZhuang', component: dianBiaoGaiZhuang, },
+    { path: '/huoer', component: huoer, },
+    { path: '/XiangShi', component: XiangShi, },
+    { path: '/zizushi', component: zizushi, }
 ]
 
 
